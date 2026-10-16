@@ -361,14 +361,52 @@ def task24(code, quantity, cupon_code, delivery_code):
               case _:
                      return 'Invalid delivery input'
        return product, quantity, subtotal, discount, delivery_fee
+
+
+def task25(ID, age, workshop_code, pay_amount):
+       if len(ID)!=8:
+              return 'Invalid length'
+       elif not ID.isdecimal():
+              return 'Invalid symbols'
+       if len(age)==0:
+              return 'Invalid age input'
+       elif not age.isdecimal():
+              return 'Invalid symbols'
+       elif not 16<age<65:
+              return 'Invalid age'
+       match workshop_code:
+              case 'PY':
+                     money=30
+              case 'WEB':
+                     money=40
+              case 'CY':
+                     if age>18:
+                            money=50
+                     else:
+                            return 'Rejected'
+              case _:
+                     return 'Rejected'
+       if 16<=age<=18:
+              discount=20
+       else:
+              discount=0
+       if len(pay_amount)==0:
+              return 'Invalid input of payment amount'
+       elif not pay_amount.isdecimal():
+              return "Dont use other symbols than digits"
+       if payment<money*(100-discount):
+              return 'Insufficent payment', money*(100-discount)-pay_amount
+       else:
+              return 'Registration confirmed', ID, workshop_code, discount, payment-money*(100-discount)
        
+
        
+      
        
        
        
        
               
-
 
 
 
